@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,21 +24,22 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
-        initializeActionBar();
-        initializeTabLayout();
+        initializeAppBar();
         initializeViewPager();
+        initializeTabLayout();
     }
 
-    private void initializeActionBar() {
+    private void initializeAppBar() {
 
     }
 
     private void initializeTabLayout() {
-
+        tabLayout.setupWithViewPager(viewPager);
     }
 
     private void initializeViewPager() {
-
+        viewPager.setAdapter(new MainActivityViewPagerAdapter(getSupportFragmentManager()));
     }
 }

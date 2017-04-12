@@ -166,3 +166,4 @@ crashlytics-build.properties
 fabric.properties
 
 # End of https://www.gitignore.io/api/android,androidstudio
+.idea/inspectionProfiles/
