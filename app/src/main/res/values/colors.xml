@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+
+    <color name="rss_white">#FAFAFA</color>
+    <color name="rss_gray">#969696</color>
+    <color name="rss_black">#000000</color>
+    <color name="rss_olive">#b7e1b8</color>
+    <color name="rss_red">#b40000</color>
+
+
+    <color name="colorPrimary">@color/rss_white</color>
+    <color name="colorPrimaryDark">@color/rss_white</color>
+    <color name="colorAccent">@color/rss_red</color>
 </resources>
