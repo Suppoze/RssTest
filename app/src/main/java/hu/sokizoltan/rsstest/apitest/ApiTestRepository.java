@@ -2,6 +2,7 @@ package hu.sokizoltan.rsstest.apitest;
 
 import javax.inject.Inject;
 
+import hu.sokizoltan.rsstest.jsonview.JsonFileManager;
 import io.reactivex.Observable;
 
 public class ApiTestRepository {
@@ -10,11 +11,17 @@ public class ApiTestRepository {
     ApiTestServer apiTestServer;
 
     @Inject
+    JsonFileManager jsonFileManager;
+
+    @Inject
     public ApiTestRepository() {
 
     }
 
     public Observable<ApiTestResponse> getApiTestData() {
-        return apiTestServer.getApiTest();
+
+        return apiTestServer.getApiTest()
+                .doAfterNext((list) -> jsonFileManager.saveToFile(list))
+                .flatMap(Observable::fromIterable);
     }
 }
