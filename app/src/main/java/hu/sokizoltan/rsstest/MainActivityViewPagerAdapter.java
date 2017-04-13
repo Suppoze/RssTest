@@ -30,4 +30,17 @@ class MainActivityViewPagerAdapter extends FragmentStatePagerAdapter {
         }
     }
 
+    @Override
+    public CharSequence getPageTitle(int position) {
+
+        // TODO: get titles from resources
+        switch (position) {
+            case API_TEST_LIST:
+                return "APITEST";
+            case JSON_VIEWER:
+                return "JSON";
+            default:
+                throw new IndexOutOfBoundsException(String.format("Fragment position %d is out of bounds", position));
+        }
+    }
 }
