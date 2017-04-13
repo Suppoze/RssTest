@@ -5,7 +5,7 @@ import android.app.Application;
 import android.content.Intent;
 import android.content.IntentFilter;
 
-import hu.sokizoltan.rsstest.battery.BatteryLevelReciever;
+import hu.sokizoltan.rsstest.battery.BatteryLevelReceiver;
 import hu.sokizoltan.rsstest.di.AppComponent;
 import hu.sokizoltan.rsstest.di.AppModule;
 import hu.sokizoltan.rsstest.di.DaggerAppComponent;
@@ -22,7 +22,7 @@ public class RssTestApplication extends Application {
                 .appModule(new AppModule(this))
                 .build();
 
-        registerReceiver(new BatteryLevelReciever(), new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+        registerReceiver(new BatteryLevelReceiver(), new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
     }
 
     public AppComponent getAppComponent() {

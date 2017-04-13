@@ -4,6 +4,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import java.util.Locale;
+
+import hu.sokizoltan.rsstest.apitest.view.ApiTestListView;
+import hu.sokizoltan.rsstest.json.view.JsonViewerView;
+
 class MainActivityViewPagerAdapter extends FragmentStatePagerAdapter {
 
     private static final int API_TEST_LIST = 0;
@@ -26,7 +31,8 @@ class MainActivityViewPagerAdapter extends FragmentStatePagerAdapter {
             case JSON_VIEWER:
                 return new JsonViewerView();
             default:
-                throw new IndexOutOfBoundsException(String.format("Fragment position %d is out of bounds", position));
+                throw new IndexOutOfBoundsException(
+                        String.format(Locale.getDefault(), "Fragment position %d is out of bounds", position));
         }
     }
 
@@ -40,7 +46,8 @@ class MainActivityViewPagerAdapter extends FragmentStatePagerAdapter {
             case JSON_VIEWER:
                 return "JSON";
             default:
-                throw new IndexOutOfBoundsException(String.format("Fragment position %d is out of bounds", position));
+                throw new IndexOutOfBoundsException(
+                        String.format(Locale.getDefault(), "Fragment position %d is out of bounds", position));
         }
     }
 }

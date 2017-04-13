@@ -1,4 +1,4 @@
-package hu.sokizoltan.rsstest;
+package hu.sokizoltan.rsstest.apitest.view;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.SparseBooleanArray;
@@ -18,9 +18,10 @@ import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import hu.sokizoltan.rsstest.apitest.ApiTestResponse;
+import hu.sokizoltan.rsstest.R;
+import hu.sokizoltan.rsstest.apitest.model.ApiTestResponse;
 
-class ApiTestListAdapter extends RecyclerView.Adapter {
+public class ApiTestListAdapter extends RecyclerView.Adapter {
 
     private List<ApiTestResponse> dataSet;
     private SparseBooleanArray selectedItems;

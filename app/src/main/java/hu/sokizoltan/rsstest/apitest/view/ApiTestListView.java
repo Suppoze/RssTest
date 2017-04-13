@@ -1,4 +1,4 @@
-package hu.sokizoltan.rsstest;
+package hu.sokizoltan.rsstest.apitest.view;
 
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
@@ -18,9 +18,11 @@ import javax.inject.Inject;
 import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import hu.sokizoltan.rsstest.apitest.ApiTestResponse;
-import hu.sokizoltan.rsstest.apitest.GetApiTestDataUseCase;
-import hu.sokizoltan.rsstest.common.MyView;
+import hu.sokizoltan.rsstest.R;
+import hu.sokizoltan.rsstest.RssTestApplication;
+import hu.sokizoltan.rsstest.apitest.model.ApiTestResponse;
+import hu.sokizoltan.rsstest.domain.usecase.GetApiTestDataUseCase;
+import hu.sokizoltan.rsstest.domain.view.MyView;
 
 public class ApiTestListView extends Fragment implements MyView {
 

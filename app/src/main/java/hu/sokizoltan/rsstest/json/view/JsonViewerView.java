@@ -1,4 +1,4 @@
-package hu.sokizoltan.rsstest;
+package hu.sokizoltan.rsstest.json.view;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,8 +12,10 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import hu.sokizoltan.rsstest.common.MyView;
-import hu.sokizoltan.rsstest.json.ReadJsonFromFileUseCase;
+import hu.sokizoltan.rsstest.R;
+import hu.sokizoltan.rsstest.RssTestApplication;
+import hu.sokizoltan.rsstest.domain.usecase.ReadJsonFromFileUseCase;
+import hu.sokizoltan.rsstest.domain.view.MyView;
 
 public class JsonViewerView extends Fragment implements MyView {
 
@@ -42,11 +44,6 @@ public class JsonViewerView extends Fragment implements MyView {
         super.onViewCreated(view, savedInstanceState);
         readJsonFromFileUseCase.setView(this);
         readJsonFromFileUseCase.execute();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
     }
 
     public void refreshText(String newJson) {

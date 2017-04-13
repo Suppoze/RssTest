@@ -1,4 +1,4 @@
-package hu.sokizoltan.rsstest.apitest;
+package hu.sokizoltan.rsstest.apitest.api;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

@@ -3,8 +3,8 @@ package hu.sokizoltan.rsstest.di;
 import javax.inject.Singleton;
 
 import dagger.Component;
-import hu.sokizoltan.rsstest.ApiTestListView;
-import hu.sokizoltan.rsstest.JsonViewerView;
+import hu.sokizoltan.rsstest.apitest.view.ApiTestListView;
+import hu.sokizoltan.rsstest.json.view.JsonViewerView;
 
 @Singleton
 @Component(modules = {AppModule.class})

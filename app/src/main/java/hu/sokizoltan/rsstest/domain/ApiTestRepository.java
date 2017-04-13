@@ -1,4 +1,4 @@
-package hu.sokizoltan.rsstest.apitest;
+package hu.sokizoltan.rsstest.domain;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import hu.sokizoltan.rsstest.json.JsonFileManager;
+import hu.sokizoltan.rsstest.apitest.api.ApiTestServer;
+import hu.sokizoltan.rsstest.apitest.model.ApiTestResponse;
+import hu.sokizoltan.rsstest.json.data.JsonFileManager;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;

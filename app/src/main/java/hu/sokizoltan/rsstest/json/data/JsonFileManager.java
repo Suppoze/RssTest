@@ -1,4 +1,4 @@
-package hu.sokizoltan.rsstest.json;
+package hu.sokizoltan.rsstest.json.data;
 
 import android.content.Context;
 
@@ -59,7 +59,7 @@ public class JsonFileManager {
         out.close();
     }
 
-    public String readFromFile() {
+    private String readFromFile() {
         if (jsonFile == null) {
             return "No jsonfile yet.";
         }
@@ -72,7 +72,6 @@ public class JsonFileManager {
             in.read(bytes);
             in.close();
         } catch (IOException e) {
-            // TODO: catch
             e.printStackTrace();
             return "Error during reading file.";
         }
@@ -80,7 +79,7 @@ public class JsonFileManager {
         return new String(bytes);
     }
 
-    interface FileChangeListener {
+    public interface FileChangeListener {
         void onFileChanged(String newJson);
     }
 }

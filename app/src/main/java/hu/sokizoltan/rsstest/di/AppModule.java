@@ -10,7 +10,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import hu.sokizoltan.rsstest.RssTestApplication;
-import hu.sokizoltan.rsstest.apitest.ApiTestService;
+import hu.sokizoltan.rsstest.apitest.api.ApiTestService;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 

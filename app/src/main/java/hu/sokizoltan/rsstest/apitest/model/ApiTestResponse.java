@@ -1,4 +1,4 @@
-package hu.sokizoltan.rsstest.apitest;
+package hu.sokizoltan.rsstest.apitest.model;
 
 public class ApiTestResponse {
 
