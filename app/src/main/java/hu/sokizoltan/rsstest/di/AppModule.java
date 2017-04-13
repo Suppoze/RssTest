@@ -2,6 +2,9 @@ package hu.sokizoltan.rsstest.di;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
@@ -10,7 +13,6 @@ import hu.sokizoltan.rsstest.RssTestApplication;
 import hu.sokizoltan.rsstest.apitest.ApiTestService;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 public class AppModule {
@@ -39,7 +41,6 @@ public class AppModule {
         return new Retrofit.Builder()
                 .baseUrl("http://www.json-generator.com/")
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
 
@@ -49,4 +50,9 @@ public class AppModule {
         return retrofit.create(ApiTestService.class);
     }
 
+    @Provides
+    @Singleton
+    public Gson provideGson() {
+        return new GsonBuilder().create();
+    }
 }

@@ -1,10 +1,9 @@
 package hu.sokizoltan.rsstest.apitest;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import okhttp3.ResponseBody;
 
 public class ApiTestServer {
 
@@ -15,7 +14,7 @@ public class ApiTestServer {
     public ApiTestServer() {
     }
 
-    public Observable<List<ApiTestResponse>> getApiTest() {
+    public Observable<ResponseBody> getApiTest() {
         return apiTestService.apiTest();
     }
 

@@ -8,14 +8,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hu.sokizoltan.rsstest.common.MyView;
+import hu.sokizoltan.rsstest.jsonview.ReadJsonFromFileUseCase;
 
 public class JsonViewerView extends Fragment implements MyView {
 
     @BindView(R.id.json_viewer_textview)
     TextView jsonTextView;
+
+    @Inject
+    ReadJsonFromFileUseCase readJsonFromFileUseCase;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,10 +40,16 @@ public class JsonViewerView extends Fragment implements MyView {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        readJsonFromFileUseCase.setView(this);
+        readJsonFromFileUseCase.execute();
     }
 
     @Override
     public void onResume() {
         super.onResume();
+    }
+
+    public void refreshText(String newJson) {
+        jsonTextView.setText(newJson);
     }
 }

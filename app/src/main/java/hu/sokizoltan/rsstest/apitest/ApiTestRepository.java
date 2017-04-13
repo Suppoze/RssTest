@@ -1,5 +1,11 @@
 package hu.sokizoltan.rsstest.apitest;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+
 import javax.inject.Inject;
 
 import hu.sokizoltan.rsstest.jsonview.JsonFileManager;
@@ -14,14 +20,20 @@ public class ApiTestRepository {
     JsonFileManager jsonFileManager;
 
     @Inject
-    public ApiTestRepository() {
+    Gson gson;
 
+    @Inject
+    public ApiTestRepository() {
     }
 
     public Observable<ApiTestResponse> getApiTestData() {
 
+        Type listType = new TypeToken<ArrayList<ApiTestResponse>>() {
+        }.getType();
+
         return apiTestServer.getApiTest()
-                .doAfterNext((list) -> jsonFileManager.saveToFile(list))
-                .flatMap(Observable::fromIterable);
+                .flatMap(responseBody -> Observable.just(jsonFileManager.saveToFile(responseBody.string()))
+                        .doOnNext(__ -> jsonFileManager.notifyFileChanged()))
+                .flatMap(responseString -> Observable.fromIterable(gson.fromJson(responseString, listType)));
     }
 }
