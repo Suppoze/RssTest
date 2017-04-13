@@ -44,10 +44,13 @@ dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:$butterknife_version"
 
     // ReactiveX
-    compile "io.reactivex.rxjava2:rxjava:$rxJava_version"
+    compile "io.reactivex.rxjava2:rxjava:$rxjava_version"
+    compile "io.reactivex.rxjava2:rxandroid:$rxandroid_version"
 
     // Networking
     compile "com.squareup.retrofit2:retrofit:$retrofit_version"
+    compile "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    compile "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
 
     compile 'com.android.support:design:25.3.1'
 }
