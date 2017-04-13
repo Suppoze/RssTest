@@ -13,7 +13,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hu.sokizoltan.rsstest.common.MyView;
-import hu.sokizoltan.rsstest.jsonview.ReadJsonFromFileUseCase;
+import hu.sokizoltan.rsstest.json.ReadJsonFromFileUseCase;
 
 public class JsonViewerView extends Fragment implements MyView {
 

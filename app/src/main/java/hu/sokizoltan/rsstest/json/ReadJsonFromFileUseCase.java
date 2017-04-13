@@ -1,4 +1,4 @@
-package hu.sokizoltan.rsstest.jsonview;
+package hu.sokizoltan.rsstest.json;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;

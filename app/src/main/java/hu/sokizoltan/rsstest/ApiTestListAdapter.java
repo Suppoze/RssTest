@@ -1,6 +1,7 @@
 package hu.sokizoltan.rsstest;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,9 +20,11 @@ import hu.sokizoltan.rsstest.apitest.ApiTestResponse;
 class ApiTestListAdapter extends RecyclerView.Adapter {
 
     private List<ApiTestResponse> dataSet;
+    private SparseBooleanArray selectedItems;
 
     public ApiTestListAdapter() {
         this.dataSet = new ArrayList<>();
+        selectedItems = new SparseBooleanArray();
     }
 
     @Override
@@ -42,6 +45,18 @@ class ApiTestListAdapter extends RecyclerView.Adapter {
         myHolder.textView1.setText(data.getCodeName());
         myHolder.textView2.setText(data.getVersionNumber());
         myHolder.textView3.setText(String.valueOf(data.getReleaseDate()));
+
+        myHolder.itemView.setSelected(selectedItems.get(position));
+
+        myHolder.itemView.setOnClickListener(v -> {
+            if (selectedItems.get(position, false)) {
+                selectedItems.delete(position);
+                v.setSelected(false);
+            } else {
+                selectedItems.put(position, true);
+                v.setSelected(true);
+            }
+        });
     }
 
     @Override
@@ -77,6 +92,5 @@ class ApiTestListAdapter extends RecyclerView.Adapter {
             super(view);
             ButterKnife.bind(this, view);
         }
-
     }
 }

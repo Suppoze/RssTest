@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-import hu.sokizoltan.rsstest.jsonview.JsonFileManager;
+import hu.sokizoltan.rsstest.json.JsonFileManager;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;

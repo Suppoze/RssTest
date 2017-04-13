@@ -9,7 +9,7 @@ import android.support.v4.app.NotificationCompat;
 
 import hu.sokizoltan.rsstest.R;
 
-public class BatteryReceiver extends BroadcastReceiver {
+public class BatteryLevelReciever extends BroadcastReceiver {
 
     private static final String BATTERY_LEVEL = "level";
 

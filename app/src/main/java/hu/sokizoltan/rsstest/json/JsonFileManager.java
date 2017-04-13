@@ -1,4 +1,4 @@
-package hu.sokizoltan.rsstest.jsonview;
+package hu.sokizoltan.rsstest.json;
 
 import android.content.Context;
 
