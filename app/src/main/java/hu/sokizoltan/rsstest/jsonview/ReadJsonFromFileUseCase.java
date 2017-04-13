@@ -1,10 +1,12 @@
 package hu.sokizoltan.rsstest.jsonview;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import hu.sokizoltan.rsstest.JsonViewerView;
 import hu.sokizoltan.rsstest.common.UseCase;
 
+@Singleton
 public class ReadJsonFromFileUseCase implements UseCase<JsonViewerView> {
 
     @Inject

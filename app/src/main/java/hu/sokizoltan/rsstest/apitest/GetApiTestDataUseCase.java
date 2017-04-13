@@ -1,12 +1,14 @@
 package hu.sokizoltan.rsstest.apitest;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import hu.sokizoltan.rsstest.ApiTestListView;
 import hu.sokizoltan.rsstest.common.UseCase;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
+@Singleton
 public class GetApiTestDataUseCase implements UseCase<ApiTestListView> {
 
     @Inject

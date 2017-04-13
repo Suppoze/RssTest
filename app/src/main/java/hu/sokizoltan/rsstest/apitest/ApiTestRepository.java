@@ -7,10 +7,14 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
 import hu.sokizoltan.rsstest.jsonview.JsonFileManager;
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
+@Singleton
 public class ApiTestRepository {
 
     @Inject
@@ -32,6 +36,8 @@ public class ApiTestRepository {
         }.getType();
 
         return apiTestServer.getApiTest()
+                .subscribeOn(Schedulers.newThread())
+                .observeOn(AndroidSchedulers.mainThread())
                 .flatMap(responseBody -> Observable.just(jsonFileManager.saveToFile(responseBody.string()))
                         .doOnNext(__ -> jsonFileManager.notifyFileChanged()))
                 .flatMap(responseString -> Observable.fromIterable(gson.fromJson(responseString, listType)));

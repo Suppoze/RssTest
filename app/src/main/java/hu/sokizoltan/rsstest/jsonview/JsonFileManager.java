@@ -8,7 +8,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
+@Singleton
 public class JsonFileManager {
 
     @Inject
@@ -27,15 +29,12 @@ public class JsonFileManager {
             createJsonFile();
         }
         writeToFile(responseString);
+
         return responseString;
     }
 
     public void registerFileChangeListener(FileChangeListener fileChangeListener) {
         this.fileChangeListener = fileChangeListener;
-    }
-
-    public void removeFileChangeListener() {
-        fileChangeListener = null;
     }
 
     public void notifyFileChanged() {
@@ -58,7 +57,11 @@ public class JsonFileManager {
         out.close();
     }
 
-    private String readFromFile() {
+    public String readFromFile() {
+        if (jsonFile == null) {
+            return "No jsonfile yet.";
+        }
+
         int length = (int) jsonFile.length();
         byte[] bytes = new byte[length];
 
