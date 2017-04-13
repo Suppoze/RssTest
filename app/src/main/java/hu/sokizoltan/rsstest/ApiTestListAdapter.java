@@ -10,8 +10,11 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,9 +45,12 @@ class ApiTestListAdapter extends RecyclerView.Adapter {
                 .load(data.getImageUrl())
                 .into(myHolder.imageView);
 
-        myHolder.textView1.setText(data.getCodeName());
-        myHolder.textView2.setText(data.getVersionNumber());
-        myHolder.textView3.setText(String.valueOf(data.getReleaseDate()));
+        String formattedDate = new SimpleDateFormat("yyyy / MM / dd", Locale.getDefault()).format(new Date(data.getReleaseDate()));
+
+        myHolder.codename.setText(data.getCodeName());
+        myHolder.apiLevel.setText(String.valueOf(data.getApiLevel()));
+        myHolder.version.setText(data.getVersionNumber());
+        myHolder.date.setText(formattedDate);
 
         myHolder.itemView.setSelected(selectedItems.get(position));
 
@@ -79,14 +85,17 @@ class ApiTestListAdapter extends RecyclerView.Adapter {
         @BindView(R.id.list_item_image)
         ImageView imageView;
 
-        @BindView(R.id.list_item_textview_1)
-        TextView textView1;
+        @BindView(R.id.list_item_codename)
+        TextView codename;
 
-        @BindView(R.id.list_item_textview_2)
-        TextView textView2;
+        @BindView(R.id.list_item_apilevel)
+        TextView apiLevel;
 
-        @BindView(R.id.list_item_textview_3)
-        TextView textView3;
+        @BindView(R.id.list_item_date)
+        TextView date;
+
+        @BindView(R.id.list_item_version)
+        TextView version;
 
         public ViewHolder(View view) {
             super(view);
