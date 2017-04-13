@@ -3,6 +3,7 @@ package hu.sokizoltan.rsstest;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,6 +23,9 @@ public class ApiTestListView extends Fragment implements MyView {
 
     @BindView(R.id.apitest_list_recyler_view)
     RecyclerView recyclerView;
+
+    @BindView(R.id.apitest_list_swiperefreshlayout)
+    SwipeRefreshLayout swipeRefreshLayout;
 
     @Inject
     GetApiTestDataUseCase getApiTestDataUseCase;
@@ -50,6 +54,18 @@ public class ApiTestListView extends Fragment implements MyView {
         getApiTestDataUseCase.setView(this);
         getApiTestDataUseCase.execute();
 
+        setupSwipeRefreshLayout();
+        setupRecyclerView();
+    }
+
+    private void setupSwipeRefreshLayout() {
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            apiTestListAdapter.clearData();
+            getApiTestDataUseCase.execute();
+        });
+    }
+
+    private void setupRecyclerView() {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(apiTestListAdapter);
     }
@@ -61,5 +77,9 @@ public class ApiTestListView extends Fragment implements MyView {
 
     public void showError(String message) {
         Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+    }
+
+    public void showLoading(boolean isLoading) {
+        swipeRefreshLayout.setRefreshing(isLoading);
     }
 }

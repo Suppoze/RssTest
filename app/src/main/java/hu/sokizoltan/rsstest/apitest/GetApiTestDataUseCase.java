@@ -25,6 +25,7 @@ public class GetApiTestDataUseCase implements UseCase<ApiTestListView> {
 
     @Override
     public void execute() {
+        apiTestListView.showLoading(true);
         apiTestRepository.getApiTestData()
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -37,10 +38,12 @@ public class GetApiTestDataUseCase implements UseCase<ApiTestListView> {
 
     private void onError(Throwable throwable) {
         apiTestListView.showError(throwable.getMessage());
+        apiTestListView.showLoading(false);
         throwable.printStackTrace();
     }
 
     private void onCompleted() {
+        apiTestListView.showLoading(false);
     }
 }
 
