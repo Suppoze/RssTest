@@ -1,5 +1,7 @@
 package hu.sokizoltan.rsstest;
 
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 
 import javax.inject.Inject;
 
+import butterknife.BindDrawable;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import hu.sokizoltan.rsstest.apitest.ApiTestResponse;
@@ -26,6 +29,9 @@ public class ApiTestListView extends Fragment implements MyView {
 
     @BindView(R.id.apitest_list_swiperefreshlayout)
     SwipeRefreshLayout swipeRefreshLayout;
+
+    @BindDrawable(R.drawable.item_divider)
+    Drawable itemDivider;
 
     @Inject
     GetApiTestDataUseCase getApiTestDataUseCase;
@@ -66,6 +72,7 @@ public class ApiTestListView extends Fragment implements MyView {
     }
 
     private void setupRecyclerView() {
+        recyclerView.addItemDecoration(new ItemDividerDecoration(itemDivider));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(apiTestListAdapter);
     }
@@ -81,5 +88,33 @@ public class ApiTestListView extends Fragment implements MyView {
 
     public void showLoading(boolean isLoading) {
         swipeRefreshLayout.setRefreshing(isLoading);
+    }
+
+    private class ItemDividerDecoration extends RecyclerView.ItemDecoration {
+
+        private Drawable divider;
+
+        public ItemDividerDecoration(Drawable divider) {
+            this.divider = divider;
+        }
+
+        @Override
+        public void onDrawOver(Canvas c, RecyclerView parent, RecyclerView.State state) {
+            int left = parent.getPaddingLeft();
+            int right = parent.getWidth() - parent.getPaddingRight();
+
+            int childCount = parent.getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                View child = parent.getChildAt(i);
+
+                RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) child.getLayoutParams();
+
+                int top = child.getBottom() + params.bottomMargin;
+                int bottom = top + divider.getIntrinsicHeight();
+
+                divider.setBounds(left, top, right, bottom);
+                divider.draw(c);
+            }
+        }
     }
 }
