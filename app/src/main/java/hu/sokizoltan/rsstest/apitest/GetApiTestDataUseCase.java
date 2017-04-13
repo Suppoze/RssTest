@@ -2,25 +2,25 @@ package hu.sokizoltan.rsstest.apitest;
 
 import javax.inject.Inject;
 
-import hu.sokizoltan.rsstest.JsonViewerView;
+import hu.sokizoltan.rsstest.ApiTestListView;
 import hu.sokizoltan.rsstest.common.UseCase;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class GetApiTestDataUseCase implements UseCase<JsonViewerView> {
+public class GetApiTestDataUseCase implements UseCase<ApiTestListView> {
 
     @Inject
     ApiTestRepository apiTestRepository;
 
-    private JsonViewerView jsonViewerView;
+    private ApiTestListView apiTestListView;
 
     @Inject
     public GetApiTestDataUseCase() {
     }
 
     @Override
-    public void setView(JsonViewerView view) {
-        jsonViewerView = view;
+    public void setView(ApiTestListView view) {
+        apiTestListView = view;
     }
 
     @Override
@@ -32,11 +32,11 @@ public class GetApiTestDataUseCase implements UseCase<JsonViewerView> {
     }
 
     private void onNext(ApiTestResponse apiTestResponse) {
-        jsonViewerView.addResponse(apiTestResponse.getImageUrl());
+        apiTestListView.addToList(apiTestResponse);
     }
 
     private void onError(Throwable throwable) {
-        jsonViewerView.showToast(throwable.getMessage());
+        apiTestListView.showError(throwable.getMessage());
         throwable.printStackTrace();
     }
 

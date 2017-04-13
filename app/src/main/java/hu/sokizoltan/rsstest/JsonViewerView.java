@@ -7,22 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import hu.sokizoltan.rsstest.apitest.GetApiTestDataUseCase;
 import hu.sokizoltan.rsstest.common.MyView;
 
 public class JsonViewerView extends Fragment implements MyView {
 
     @BindView(R.id.json_viewer_textview)
     TextView jsonTextView;
-
-    @Inject
-    GetApiTestDataUseCase getApiTestDataUseCase;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,20 +34,10 @@ public class JsonViewerView extends Fragment implements MyView {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getApiTestDataUseCase.setView(this);
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        getApiTestDataUseCase.execute();
-    }
-
-    public void addResponse(String imageUrl) {
-        jsonTextView.append(imageUrl);
-    }
-
-    public void showToast(String message) {
-        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 }

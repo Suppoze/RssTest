@@ -3,6 +3,7 @@ package hu.sokizoltan.rsstest.di;
 import javax.inject.Singleton;
 
 import dagger.Component;
+import hu.sokizoltan.rsstest.ApiTestListView;
 import hu.sokizoltan.rsstest.JsonViewerView;
 
 @Singleton
@@ -10,5 +11,7 @@ import hu.sokizoltan.rsstest.JsonViewerView;
 public interface AppComponent {
 
     void inject(JsonViewerView jsonViewerView);
+
+    void inject(ApiTestListView apiTestListView);
 
 }
