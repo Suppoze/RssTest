@@ -25,9 +25,11 @@ public class JsonFileManager {
     private FileChangeListener fileChangeListener;
 
     public String saveToFile(String responseString) throws IOException {
+
         if (jsonFile == null) {
             createJsonFile();
         }
+
         writeToFile(responseString);
 
         return responseString;

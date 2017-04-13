@@ -3,4 +3,5 @@
 
     <string name="tab_item_apitest">APITEST</string>
     <string name="tab_item_json">JSON</string>
+    <string name="battery_state">Battery state</string>
 </resources>
